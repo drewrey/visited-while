@@ -1,0 +1,16 @@
+{
+  "title": "Visited While",
+  "name": "visited-while",
+  "version": "0.0.1",
+  "description": "See which sites you visited while a site is open",
+  "main": "index.js",
+  "author": "Drewrey Lupton",
+  "engines": {
+    "firefox": ">=38.0a1",
+    "fennec": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "quantified self"
+  ]
+}
