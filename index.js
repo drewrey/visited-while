@@ -5,6 +5,9 @@ var tabs = require('sdk/tabs');
 if (!ss.storage.visits)
     ss.storage.visits = [];
 
+if (!ss.storage.tx)
+    ss.storage.tx = [];
+
 var button = ToggleButton({
   id: 'visited-while',
   label: 'Visited While',
@@ -17,6 +20,7 @@ function visitedWhile(state) {
        disabled: true
     });
     current = tabs.activeTab;
+    start = Date()
     function onReadyWhile(tab) {
         if (tab.url == 'about:newtab')
             return {};
@@ -30,5 +34,10 @@ function visitedWhile(state) {
     tabs.on('ready', onReadyWhile);
     current.on('close', function(tab) {
         tabs.removeListener('ready', onReadyWhile);
+        ss.storage.tx.push({
+            'while': current.url,
+            'start': start,
+            'end': Date().toLocaleString()
+        });
     });
 }
