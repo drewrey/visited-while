@@ -14,6 +14,8 @@ function visitedWhile(state) {
     });
     current = tabs.activeTab;
     function onReadyWhile(tab) {
+        if (tab.url == 'about:newtab')
+            return {};
         var entry = {
             'while': current.url,
             'visited': tab.url,
