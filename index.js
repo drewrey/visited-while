@@ -4,7 +4,7 @@ var tabs = require('sdk/tabs');
 var button = ActionButton({
   id: 'visited-while',
   label: 'Visited While',
-  icon: './data/icon-16.png',
+  icon: './icon-16.png',
   onClick: visitedWhile
 });
 
