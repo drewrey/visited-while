@@ -1,5 +1,9 @@
 var { ToggleButton } = require('sdk/ui/button/toggle');
+var ss = require('sdk/simple-storage');
 var tabs = require('sdk/tabs');
+
+if (!ss.storage.visits)
+    ss.storage.visits = [];
 
 var button = ToggleButton({
   id: 'visited-while',
@@ -21,7 +25,7 @@ function visitedWhile(state) {
             'visited': tab.url,
             'time': Date().toLocaleString()
         };
-        console.log(entry);
+        ss.storage.visits.push(entry);
     }
     tabs.on('ready', onReadyWhile);
     current.on('close', function(tab) {
