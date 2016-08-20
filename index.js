@@ -13,16 +13,16 @@ function visitedWhile(state) {
        disabled: true
     });
     current = tabs.activeTab;
-    console.log(current.url +  ' is open');
+    function onReadyWhile(tab) {
+        var entry = {
+            'while': current.url,
+            'visited': tab.url,
+            'time': Date().toLocaleString()
+        };
+        console.log(entry);
+    }
     tabs.on('ready', onReadyWhile);
-    current.on('close', logClose);
-}
-
-function logClose(tab) {
-    console.log(tab.url + ' is closed');
-    tabs.removeListener('ready', onReadyWhile);
-}
-
-function onReadyWhile(tab) {
-    console.log('loaded: ', tab.title, tab.url);
+    current.on('close', function(tab) {
+        tabs.removeListener('ready', onReadyWhile);
+    });
 }
