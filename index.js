@@ -1,7 +1,7 @@
-var { ActionButton } = require('sdk/ui/button/action');
+var { ToggleButton } = require('sdk/ui/button/toggle');
 var tabs = require('sdk/tabs');
 
-var button = ActionButton({
+var button = ToggleButton({
   id: 'visited-while',
   label: 'Visited While',
   icon: './icon-16.png',
@@ -9,6 +9,9 @@ var button = ActionButton({
 });
 
 function visitedWhile(state) {
+    button.state("tab", {
+       disabled: true
+    });
     current = tabs.activeTab;
     console.log(current.url +  ' is open');
     tabs.on('ready', onReadyWhile);
